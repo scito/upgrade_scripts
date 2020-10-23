@@ -78,12 +78,12 @@ DOWNLOADS="."
 DEST="phpmyadmin"
 
 OLDVERSION=$(cat $BIN/$DEST/_VERSION.txt || echo "")
-echo -e "\nUpgrade phpMyAdmin $VERSION\n"
+echo -e "\nUpgrade phpMyAdmin $VERSION"
 echo -e "Current version: $OLDVERSION\n"
 
 NAME="phpMyAdmin-$VERSION-all-languages"
 GZ="$NAME.tar.gz"
-cmd="wget --trust-server-names https://files.phpmyadmin.net/phpMyAdmin/$VERSION/phpMyAdmin-4.9.2-all-languages.tar.gz -O $DOWNLOADS/$GZ"
+cmd="wget --trust-server-names https://files.phpmyadmin.net/phpMyAdmin/$VERSION/phpMyAdmin-$VERSION-all-languages.tar.gz -O $DOWNLOADS/$GZ"
 if $interactive ; then askContinueYn "$cmd"; fi
 eval "$cmd"
 
