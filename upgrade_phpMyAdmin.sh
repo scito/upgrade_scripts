@@ -47,7 +47,7 @@ askContinueYn() {
 
 echo "Checking PHPMyAdmin version..."
 # TAG=$(curl -s https://api.github.com/repos/gohugoio/hugo/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")')
-VERSION=$(curl -sL https://www.phpmyadmin.net/downloads/ | grep -e "<h2>phpMyAdmin .*</h2>" | perl -pe's%.*<h2>phpMyAdmin (\d+\.\d+\.\d+)</h2>.*%\1%')
+VERSION=$(curl -sL https://www.phpmyadmin.net/downloads/ | grep -e "<h2>phpMyAdmin .*</h2>" | perl -pe's%.*<h2>phpMyAdmin (\d+\.\d+\.\d+)</h2>.*%\1%' | tail -1)
 echo
 
 # read -e -p "Upgrade to version (e.g. 0.59.0): " VERSION
