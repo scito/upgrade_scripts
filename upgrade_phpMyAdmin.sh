@@ -81,6 +81,11 @@ OLDVERSION=$(cat $BIN/$DEST/_VERSION.txt || echo "")
 echo -e "\nUpgrade phpMyAdmin $VERSION"
 echo -e "Current version: $OLDVERSION\n"
 
+if [ "$VERSION" = "$OLDVERSION" ]; then
+    echo "Versions are equal."
+    quit
+fi
+
 NAME="phpMyAdmin-$VERSION-all-languages"
 GZ="$NAME.tar.gz"
 cmd="wget --trust-server-names https://files.phpmyadmin.net/phpMyAdmin/$VERSION/phpMyAdmin-$VERSION-all-languages.tar.gz -O $DOWNLOADS/$GZ"
