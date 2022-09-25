@@ -53,6 +53,7 @@ echo
 # read -e -p "Upgrade to version (e.g. 0.59.0): " VERSION
 
 interactive=true
+check_version=true
 
 while test $# -gt 0; do
     case $1 in
@@ -63,11 +64,16 @@ while test $# -gt 0; do
             echo
             echo "Options:"
             echo "-a                      Automatic mode"
+            echo "-C                      Ignore version check"
             echo "-h, --help              Help"
             quit
             ;;
         -a)
             interactive=false
+            shift
+            ;;
+        -C)
+            check_version=false
             shift
             ;;
     esac
@@ -81,7 +87,7 @@ OLDVERSION=$(cat $BIN/$DEST/_VERSION.txt || echo "")
 echo -e "\nUpgrade phpMyAdmin $VERSION"
 echo -e "Current version: $OLDVERSION\n"
 
-if [ "$VERSION" = "$OLDVERSION" ]; then
+if [ "$VERSION" = "$OLDVERSION" ] && $check_version; then
     echo "Versions are equal."
     quit
 fi
